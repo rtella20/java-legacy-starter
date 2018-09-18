@@ -32,10 +32,7 @@ public class JobApplicant {
 	private String ssn;
 	private JobApplicantDao jobApplicantDao;
 
-	private String[] specialCases = new String[] {
-			"219099999", "078051120"
-	};
-	
+
 	public void setName(String firstName, String middleName, String lastName) {
 		this.name = new Name(firstName, middleName, lastName);
 	}
@@ -52,25 +49,6 @@ public class JobApplicant {
 		}    
 	}
 
-	public int validateSsn() {
-		if ( !ssn.matches("\\d{9}") ) {
-			return 1;
-		}
-		if ( "000".equals(ssn.substring(0,3)) || 
-			 "666".equals(ssn.substring(0,3)) ||
-			 "9".equals(ssn.substring(0,1)) ) {
-			return 2;
-		}
-		if ( "0000".equals(ssn.substring(5)) ) {
-			return 3;
-		}
-		for (int i = 0 ; i < specialCases.length ; i++ ) {
-			if ( ssn.equals(specialCases[i]) ) {
-				return 4;
-			}
-		}
-		return 0;
-	}
 
 	public void setZipCode(String zipCode) throws URISyntaxException, IOException {
 		this.zipCode = zipCode;
