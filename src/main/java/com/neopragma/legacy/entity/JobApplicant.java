@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import com.neopragma.legacy.dao.JobApplicantDao;
 import com.neopragma.legacy.dao.JobApplicantDaoImpl;
+import com.neopragma.legacy.utils.SsnUtilities;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -42,11 +43,8 @@ public class JobApplicant {
 	}
 
 	public void setSsn(String ssn) {
-		if ( ssn.matches("(\\d{3}-\\d{2}-\\d{4}|\\d{9})") ) {
-  		    this.ssn = ssn.replaceAll("-", "");
-		} else {
-  		    this.ssn = "";
-		}    
+		SsnUtilities ssnUtilities = new SsnUtilities();
+		this.ssn = ssnUtilities.removeHyphens(ssn);
 	}
 
 
