@@ -45,34 +45,34 @@ public class NameTest {
         Name name = new Name("First", null, null);
         assertEquals(6, name.validateName());
     }
-/**
+
     @Test
     public void completeSpanishNameProvided() {
-        jobApplicant.setSpanishName("PrimerNombre", "SegundoNombre", "PrimerApellido", "SegundoApellido");
+        Name name = new Name("PrimerNombre", "SegundoNombre", "PrimerApellido", "SegundoApellido");
         assertEquals(0, jobApplicant.validateName());
     }
 
     @Test
     public void spanishNameWithOneFirstNameProvided() {
-        jobApplicant.setSpanishName("PrimerNombre", null, "PrimerApellido", "SegundoApellido");
+        Name name = new Name("PrimerNombre", null, "PrimerApellido", "SegundoApellido");
         assertEquals(0, jobApplicant.validateName());
     }
 
     @Test
     public void spanishNameWithOneLastNameProvided() {
-        jobApplicant.setSpanishName("PrimerNombre", null, "PrimerApellido", null);
+        Name name = new Name("PrimerNombre", null, "PrimerApellido", null);
         assertEquals(0, jobApplicant.validateName());
     }
 
     @Test
     public void spanishNameWithNoFirstNameProvided() {
-        jobApplicant.setSpanishName(null, null, "PrimerApellido", null);
+        Name name = new Name(null, null, "PrimerApellido", null);
         assertEquals(6, jobApplicant.validateName());
     }
 
     @Test
     public void spanishNameWithNoLastNameProvided() {
-        jobApplicant.setSpanishName("PrimerNombre", "SegundoNombre", null, null);
+        Name name = new Name("PrimerNombre", "SegundoNombre", null, null);
         assertEquals(6, jobApplicant.validateName());
     }
 
@@ -81,5 +81,4 @@ public class NameTest {
         jobApplicant.setName("First", "Middle", "Last");
         assertEquals("Last, First Middle", jobApplicant.formatLastNameFirst());
     }
-**/
 }
