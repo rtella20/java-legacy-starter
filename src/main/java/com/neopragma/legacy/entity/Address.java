@@ -13,6 +13,13 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+/**
+ * Represents an address for the job applicant
+ *
+ * @author neopragma
+ * @version 1.0.0
+ */
+
 public class Address {
 
     private String zipCode;
