@@ -1,5 +1,6 @@
 package com.neopragma.legacy.screen;
 
+import com.neopragma.legacy.entity.Address;
 import com.neopragma.legacy.entity.JobApplicant;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,11 +12,12 @@ import static org.junit.Assert.assertEquals;
 
 public class AddressTest {
 
-    private JobApplicant jobApplicant;
+
+    private Address address;
 
     @Before
     public void beforeEach() {
-        jobApplicant = new JobApplicant();
+        address = new Address();
     }
 
     @Test
