@@ -7,11 +7,9 @@ public class SsnUtilities {
     };
 
     public String removeHyphens(String ssn) {
-        String nonHyphenSsn = null;
+        String nonHyphenSsn = "";
         if ( ssn.matches("(\\d{3}-\\d{2}-\\d{4}|\\d{9})") ) {
             nonHyphenSsn = ssn.replaceAll("-", "");
-        } else {
-            nonHyphenSsn = "";
         }
         return nonHyphenSsn;
     }

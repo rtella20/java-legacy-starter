@@ -77,4 +77,9 @@ public class SsnUtilitiesTest {
     public void itRejectsSsn219099999() {
         assertEquals(4, ssnUtilities.validateSsn("219099999"));
     }
+
+    @Test
+    public void removeHyphensTest() {
+        assertEquals("123456789", ssnUtilities.removeHyphens("123-45-6789"));
+    }
 }
