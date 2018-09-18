@@ -1,22 +1,11 @@
 package com.neopragma.legacy.entity;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Scanner;
 
 import com.neopragma.legacy.dao.JobApplicantDao;
-import com.neopragma.legacy.dao.JobApplicantDaoImpl;
 import com.neopragma.legacy.utils.CityStateLookup;
 import com.neopragma.legacy.utils.SsnUtilities;
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 
 /**
  * This class represents a job applicant entity.

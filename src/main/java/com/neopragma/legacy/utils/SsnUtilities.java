@@ -1,7 +1,12 @@
 package com.neopragma.legacy.utils;
 
 import static com.neopragma.legacy.utils.ErrorCodes.*;
-
+/**
+ * Utility service to format and validate SSN
+ *
+ * @author neopragma
+ * @version 1.0.0
+ */
 public class SsnUtilities {
 
     public static final String SSN_NON_ALLOCATED_SERIES_000 = "000";

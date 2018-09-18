@@ -3,6 +3,11 @@ package com.neopragma.legacy.entity;
 import static com.neopragma.legacy.utils.ErrorCodes.INVALID_NAME;
 import static com.neopragma.legacy.utils.ErrorCodes.SUCCESS;
 
+/**
+ * Represents Name attributes and their behavior
+ * @author neopragma
+ * @version 1.0
+ */
 public class Name {
     private String firstName;
     private String middleName;
