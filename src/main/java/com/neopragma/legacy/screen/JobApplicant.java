@@ -15,7 +15,11 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
 /**
- * Job applicant class.
+ * This class represents a job applicant entity.
+ * This version currently handles a number of responsibilities.
+ *
+ * @author neopragma
+ * @version 1.0.0
  */
 public class JobApplicant {
 	
@@ -69,7 +73,7 @@ public class JobApplicant {
 		}
 	}
 	
-	
+
 	public void setSsn(String ssn) {
 		if ( ssn.matches("(\\d{3}-\\d{2}-\\d{4}|\\d{9})") ) {
   		    this.ssn = ssn.replaceAll("-", "");
