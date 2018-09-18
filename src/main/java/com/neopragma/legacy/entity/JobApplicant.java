@@ -43,20 +43,7 @@ public class JobApplicant {
 		this.middleName = middleName == null ? "" : middleName;
 		this.lastName = lastName == null ? "" : lastName;
 	}
-	
-	public void setSpanishName(String primerNombre, String segundoNombre,
-							   String primerApellido, String segundoApellido) {
-		this.firstName = primerNombre == null ? "" : primerNombre;
-		this.middleName = segundoNombre == null ? "" : segundoNombre;
-		if ( primerApellido != null ) {
-  		    StringBuilder sb = new StringBuilder(primerApellido);
-		    sb.append(segundoApellido == null ? null : " " + segundoApellido);
-		    this.lastName = sb.toString();
-		} else {
-			this.lastName = "";
-		}
-	}
-	
+
 	public String formatLastNameFirst() {
 		StringBuilder sb = new StringBuilder(lastName);
 		sb.append(", ");
