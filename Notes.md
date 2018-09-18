@@ -23,3 +23,5 @@ Smell 9: Separation of concerns. The address related activities can be separated
 Smell 10: Reviewing the Address, it can further refactored to separate city sate lookup from address class.
 
 Smell 11: Separation of concerns. The city state look up doesn't have to be part of address or city state domain. That could be a separate utility service.
+
+Smell 12: Integration tests are bundled with unit tests. The city state look up service makes a remote call to get information. This need to be separated from unit tests. Moved the integration tests to a separate package for now. Adding a unit test using test doubles.
