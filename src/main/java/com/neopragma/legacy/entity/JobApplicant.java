@@ -39,10 +39,6 @@ public class JobApplicant {
 		this.ssn = ssnUtilities.removeHyphens(ssn);
 	}
 
-	public void setZipCode(String zipCode) throws URISyntaxException, IOException {
-		address.setZipCode(zipCode);
-	}
-
 	public String getCity() {
 		return address.getCity();
 	}

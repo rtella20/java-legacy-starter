@@ -46,7 +46,7 @@ public class Main {
             zipCode = scanner.nextLine();
             jobApplicant.setName(firstName, middleName, lastName);
             jobApplicant.setSsn(ssn);
-            jobApplicant.setZipCode(zipCode);
+            jobApplicant.setAddress(zipCode);
             jobApplicantDao.save(jobApplicant);
         }
     }
