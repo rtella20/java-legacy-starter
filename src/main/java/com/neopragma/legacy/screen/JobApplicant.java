@@ -22,6 +22,14 @@ public class JobApplicant {
 	private String firstName = null;
 	private String middleName = null;
 	private String lastName = null;
+	private String zipCode;
+	private String city;
+	private String state;
+	private String ssn;
+
+	private String[] specialCases = new String[] {
+			"219099999", "078051120"
+	};
 	
 	public void setName(String firstName, String middleName, String lastName) {
 		this.firstName = firstName == null ? "" : firstName;
@@ -61,16 +69,7 @@ public class JobApplicant {
 		}
 	}
 	
-	private String ssn;
 	
-	private String[] specialCases = new String[] {
-	    "219099999", "078051120"
-	};
-	
-	private String zipCode;    
-	private String city;
-	private String state;
-
 	public void setSsn(String ssn) {
 		if ( ssn.matches("(\\d{3}-\\d{2}-\\d{4}|\\d{9})") ) {
   		    this.ssn = ssn.replaceAll("-", "");
