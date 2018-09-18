@@ -23,8 +23,8 @@ public class NameTest {
 
     @Test
     public void completeNameProvided() {
-        jobApplicant.setName("First", "Middle", "Last");
-        assertEquals(0, jobApplicant.validateName());
+        Name name = new Name ("First", "Middle", "Last");
+        assertEquals(0, name.validateName());
     }
 
     @Test
