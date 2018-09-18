@@ -11,6 +11,13 @@ import java.net.URISyntaxException;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Integration test to make the remote call to fetch city and state based on a zip code
+ * TODO: provision to run separately from unit tests
+ *
+ * @author neopragma
+ * @version 1.0.0
+ */
 public class CityStateLookupTest {
     private CityStateLookup cityStateLookup;
 
