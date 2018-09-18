@@ -29,66 +29,7 @@ public class JobApplicantTest {
 		jobApplicant = new JobApplicant();
 	}
 	
-	@Test
-	public void completeNameProvided() {
-		jobApplicant.setName("First", "Middle", "Last");
-		assertEquals(0, jobApplicant.validateName());
-	}
-	
-	@Test
-	public void firstAndLastNamesProvided() {
-		jobApplicant.setName("First", null, "Last");
-		assertEquals(0, jobApplicant.validateName());
-	}
-	
-	@Test
-	public void missingFirstName() {
-		jobApplicant.setName(null, null, "Last");
-		assertEquals(6, jobApplicant.validateName());
-	}
-	
-	@Test
-	public void missingLastName() {
-		jobApplicant.setName("First", null, null);
-		assertEquals(6, jobApplicant.validateName());
-	}
-	
-	@Test
-	public void completeSpanishNameProvided() {
-		jobApplicant.setSpanishName("PrimerNombre", "SegundoNombre", "PrimerApellido", "SegundoApellido");
-		assertEquals(0, jobApplicant.validateName());
-	}
-	
-	@Test
-	public void spanishNameWithOneFirstNameProvided() {
-		jobApplicant.setSpanishName("PrimerNombre", null, "PrimerApellido", "SegundoApellido");
-		assertEquals(0, jobApplicant.validateName());
-	}
-	
-	@Test
-	public void spanishNameWithOneLastNameProvided() {
-		jobApplicant.setSpanishName("PrimerNombre", null, "PrimerApellido", null);
-		assertEquals(0, jobApplicant.validateName());
-	}
-	
-	@Test
-	public void spanishNameWithNoFirstNameProvided() {
-		jobApplicant.setSpanishName(null, null, "PrimerApellido", null);
-		assertEquals(6, jobApplicant.validateName());
-	}
-	
-	@Test
-	public void spanishNameWithNoLastNameProvided() {
-		jobApplicant.setSpanishName("PrimerNombre", "SegundoNombre", null, null);
-		assertEquals(6, jobApplicant.validateName());
-	}
-	
-	@Test
-	public void formatEnglishNameLastNameFirst() {
-		jobApplicant.setName("First", "Middle", "Last");
-		assertEquals("Last, First Middle", jobApplicant.formatLastNameFirst());
-	}
-	
+
 	@Test
 	public void ssnFormattingTest() {
 		jobApplicant.setSsn("123456789");
