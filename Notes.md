@@ -12,3 +12,4 @@ Smell 4: Violation of single responsibility. The job application save operation 
 
 Smell 5: Separation of concerns: The job applicant currently handles several name related aspects. This can be separated into a Name. Lets start with tests.
 
+Smell 6: Separation of concerns: The job applicant currently handles ssn formatting and validations. This is not a concern of job application class.
