@@ -17,3 +17,5 @@ Smell 6: Separation of concerns: The job applicant currently handles ssn formatt
 Smell 7: Several hard coded error codes in SSN validation and formatting. Time to make them constants.
 
 Smell 8: Hard coded error codes in name validation. They can use some constants.
+
+Smell 9: Separation of concerns. The address related activities can be separated from job applicant.
