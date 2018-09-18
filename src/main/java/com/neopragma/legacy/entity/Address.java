@@ -23,12 +23,11 @@ import java.net.URISyntaxException;
 public class Address {
 
     private String zipCode;
-    private String city;
-    private String state;
+    private CityState cityState;
 
     public void setZipCode(String zipCode) throws URISyntaxException, IOException {
-        Address address;
         this.zipCode = zipCode;
+        cityState = new CityState("", "");
         // Use a service to look up the city and state based on zip code.
         // Save the returned city and state if content length is greater than zero.
         URI uri = new URIBuilder()
@@ -59,12 +58,9 @@ public class Address {
                 contentOffset = result.indexOf(" - ", contentOffset);
                 contentOffset += 3;
                 int stateOffset = result.indexOf(" ", contentOffset);
-                city = result.substring(contentOffset, stateOffset);
+                cityState.setCity(result.substring(contentOffset, stateOffset));
                 stateOffset += 1;
-                state = result.substring(stateOffset, stateOffset+2);
-            } else {
-                city = "";
-                state = "";
+                cityState.setState(result.substring(stateOffset, stateOffset+2));
             }
         } finally {
             response.close();
@@ -72,10 +68,10 @@ public class Address {
     }
 
     public String getCity() {
-        return this.city;
+        return this.cityState.getCity();
     }
 
     public String getState() {
-        return this.state;
+        return this.cityState.getState();
     }
 }

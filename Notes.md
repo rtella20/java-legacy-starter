@@ -19,3 +19,5 @@ Smell 7: Several hard coded error codes in SSN validation and formatting. Time t
 Smell 8: Hard coded error codes in name validation. They can use some constants.
 
 Smell 9: Separation of concerns. The address related activities can be separated from job applicant.
+
+Smell 10: Reviewing the Address, it can further refactored to separate city sate lookup from address class.
