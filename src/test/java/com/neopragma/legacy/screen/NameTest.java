@@ -78,7 +78,7 @@ public class NameTest {
 
     @Test
     public void formatEnglishNameLastNameFirst() {
-        jobApplicant.setName("First", "Middle", "Last");
-        assertEquals("Last, First Middle", jobApplicant.formatLastNameFirst());
+        Name name = new Name("First", "Middle", "Last");
+        assertEquals("Last, First Middle", name.formatLastNameFirst());
     }
 }
