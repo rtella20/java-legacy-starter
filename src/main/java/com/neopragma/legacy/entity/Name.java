@@ -30,4 +30,16 @@ public class Name {
             return 6;
         }
     }
+
+    public String formatLastNameFirst() {
+        StringBuilder sb = new StringBuilder(lastName);
+        sb.append(", ");
+        sb.append(firstName);
+        if ( middleName.length() > 0 ) {
+            sb.append(" ");
+            sb.append(middleName);
+        }
+        return sb.toString();
+    }
+
 }

@@ -25,9 +25,7 @@ import org.apache.http.impl.client.HttpClients;
  */
 public class JobApplicant {
 	
-	private String firstName = null;
-	private String middleName = null;
-	private String lastName = null;
+	private Name name;
 	private String zipCode;
 	private String city;
 	private String state;
@@ -39,22 +37,12 @@ public class JobApplicant {
 	};
 	
 	public void setName(String firstName, String middleName, String lastName) {
-		this.firstName = firstName == null ? "" : firstName;
-		this.middleName = middleName == null ? "" : middleName;
-		this.lastName = lastName == null ? "" : lastName;
+		this.name = new Name(firstName, middleName, lastName);
 	}
 
 	public String formatLastNameFirst() {
-		StringBuilder sb = new StringBuilder(lastName);
-		sb.append(", ");
-		sb.append(firstName);
-		if ( middleName.length() > 0 ) {
-			sb.append(" ");
-			sb.append(middleName);
-		}
-		return sb.toString();
+		return this.name.formatLastNameFirst();
 	}
-
 
 	public void setSsn(String ssn) {
 		if ( ssn.matches("(\\d{3}-\\d{2}-\\d{4}|\\d{9})") ) {
@@ -155,5 +143,6 @@ public class JobApplicant {
 		setZipCode(zipCode);
 		jobApplicantDao.save(this);
 	}
+
 
 }
