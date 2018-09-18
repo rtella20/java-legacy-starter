@@ -67,15 +67,7 @@ public class JobApplicant {
 		}
 		return sb.toString();
 	}
-	
-	public int validateName() {
-		if ( firstName.length() > 0 && lastName.length() > 0 ) {
-			return 0;
-		} else {
-			return 6;
-		}
-	}
-	
+
 
 	public void setSsn(String ssn) {
 		if ( ssn.matches("(\\d{3}-\\d{2}-\\d{4}|\\d{9})") ) {
