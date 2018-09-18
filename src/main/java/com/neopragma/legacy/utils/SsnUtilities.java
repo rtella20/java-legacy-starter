@@ -6,6 +6,15 @@ public class SsnUtilities {
             "219099999", "078051120"
     };
 
+    public String removeHyphens(String ssn) {
+        String nonHyphenSsn = null;
+        if ( ssn.matches("(\\d{3}-\\d{2}-\\d{4}|\\d{9})") ) {
+            nonHyphenSsn = ssn.replaceAll("-", "");
+        } else {
+            nonHyphenSsn = "";
+        }
+        return nonHyphenSsn;
+    }
 
     public String formatSsn(String ssn) {
         StringBuilder sb = new StringBuilder(ssn.substring(0,3));
@@ -16,7 +25,8 @@ public class SsnUtilities {
         return sb.toString();
     }
 
-    public int validateSsn(String ssn) {
+    public int validateSsn(String ssnForValiation) {
+        String ssn = removeHyphens(ssnForValiation);
         if ( !ssn.matches("\\d{9}") ) {
             return 1;
         }
