@@ -8,7 +8,7 @@ import java.net.URISyntaxException;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.neopragma.legacy.screen.JobApplicant;
+import com.neopragma.legacy.entity.JobApplicant;
 
 /**
  * Automated unit checks for the base version of the JobApplicant application.

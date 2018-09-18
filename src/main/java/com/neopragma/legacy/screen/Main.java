@@ -1,5 +1,9 @@
 package com.neopragma.legacy.screen;
 
+import com.neopragma.legacy.dao.JobApplicantDao;
+import com.neopragma.legacy.dao.JobApplicantDaoImpl;
+import com.neopragma.legacy.entity.JobApplicant;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Scanner;
@@ -14,6 +18,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws URISyntaxException, IOException {
         JobApplicant jobApplicant = new JobApplicant();
+        JobApplicantDao jobApplicantDao = new JobApplicantDaoImpl();
         boolean done = false;
         Scanner scanner = new Scanner(System.in);
         String firstName = "";
@@ -42,7 +47,7 @@ public class Main {
             jobApplicant.setName(firstName, middleName, lastName);
             jobApplicant.setSsn(ssn);
             jobApplicant.setZipCode(zipCode);
-            jobApplicant.save();
+            jobApplicantDao.save(jobApplicant);
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.neopragma.legacy.screen;
+package com.neopragma.legacy.entity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,6 +7,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Scanner;
 
+import com.neopragma.legacy.dao.JobApplicantDao;
+import com.neopragma.legacy.dao.JobApplicantDaoImpl;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -30,6 +32,7 @@ public class JobApplicant {
 	private String city;
 	private String state;
 	private String ssn;
+	private JobApplicantDao jobApplicantDao;
 
 	private String[] specialCases = new String[] {
 			"219099999", "078051120"
@@ -171,12 +174,7 @@ public class JobApplicant {
 		setName(firstName, middleName, lastName);
 		setSsn(ssn);
 		setZipCode(zipCode);
-		save();
-	}
-	
-	public void save() {
-		//TODO save information to a database
-		System.out.println("Saving to database: " + formatLastNameFirst());
+		jobApplicantDao.save(this);
 	}
 
 }
