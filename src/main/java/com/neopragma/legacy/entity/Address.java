@@ -25,6 +25,11 @@ public class Address {
     private String zipCode;
     private CityState cityState;
 
+    public Address(String zipCode, CityState cityState) {
+        this.zipCode = zipCode;
+        this.cityState = cityState;
+    }
+
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }

@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import com.neopragma.legacy.dao.JobApplicantDao;
 import com.neopragma.legacy.dao.JobApplicantDaoImpl;
+import com.neopragma.legacy.utils.CityStateLookup;
 import com.neopragma.legacy.utils.SsnUtilities;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -30,9 +31,10 @@ public class JobApplicant {
 	private String ssn;
 	private Address address;
 	private JobApplicantDao jobApplicantDao;
+	private CityStateLookup cityStateLoopkup;
 
 	public JobApplicant(){
-		address = new Address();
+		cityStateLoopkup = new CityStateLookup();
 	}
 
 	public void setName(String firstName, String middleName, String lastName) {
@@ -67,9 +69,11 @@ public class JobApplicant {
 			       String zipCode) throws URISyntaxException, IOException {
 		setName(firstName, middleName, lastName);
 		setSsn(ssn);
-		setZipCode(zipCode);
+		setAddress(zipCode);
 		jobApplicantDao.save(this);
 	}
 
-
+	public void setAddress(String zipCode) throws IOException, URISyntaxException {
+		address = new Address(zipCode, cityStateLoopkup.findCityStateBasedOnZipCode(zipCode));
+	}
 }
