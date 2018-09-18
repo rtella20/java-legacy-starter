@@ -1,10 +1,19 @@
 package com.neopragma.legacy.screen;
 
+import com.neopragma.legacy.entity.JobApplicant;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class SsnUtilitiesTest {
+
+    private JobApplicant jobApplicant;
+
+    @Before
+    public void beforeEach() {
+        jobApplicant = new JobApplicant();
+    }
 
     @Test
     public void ssnFormattingTest() {
