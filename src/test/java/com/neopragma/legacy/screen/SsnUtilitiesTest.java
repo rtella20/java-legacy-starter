@@ -1,6 +1,7 @@
 package com.neopragma.legacy.screen;
 
 import com.neopragma.legacy.entity.JobApplicant;
+import com.neopragma.legacy.utils.SsnUtilities;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,16 +10,17 @@ import static org.junit.Assert.assertEquals;
 public class SsnUtilitiesTest {
 
     private JobApplicant jobApplicant;
+    private SsnUtilities ssnUtilities;
 
     @Before
     public void beforeEach() {
         jobApplicant = new JobApplicant();
+        ssnUtilities = new SsnUtilities();
     }
 
     @Test
     public void ssnFormattingTest() {
-        jobApplicant.setSsn("123456789");
-        assertEquals("123-45-6789", jobApplicant.formatSsn());
+        assertEquals("123-45-6789", ssnUtilities.formatSsn("123456789"));
     }
 
     @Test
