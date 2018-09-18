@@ -25,67 +25,56 @@ public class SsnUtilitiesTest {
 
     @Test
     public void validSsnWithNoDashes() {
-        jobApplicant.setSsn("123456789");
-        assertEquals(0, jobApplicant.validateSsn());
+        assertEquals(0, ssnValidator.validateSsn("123456789"));
     }
 
     @Test
     public void ssnWithDashesInWrongPlaces() {
-        jobApplicant.setSsn("12-3456-789");
-        assertEquals(1, jobApplicant.validateSsn());
+        assertEquals(1, ssnValidator.validateSsn("12-3456-789"));
     }
 
     @Test
     public void validSsnWithDashes() {
-        jobApplicant.setSsn("123-45-6789");
-        assertEquals(0, jobApplicant.validateSsn());
+        assertEquals(0, ssnValidator.validateSsn("123-45-6789"));
     }
 
     @Test
     public void ssnIsTooShort() {
-        jobApplicant.setSsn("12345678");
-        assertEquals(1, jobApplicant.validateSsn());
+        assertEquals(1, ssnValidator.validateSsn("12345678"));
     }
 
     @Test
     public void ssnIsTooLong() {
-        jobApplicant.setSsn("1234567890");
-        assertEquals(1, jobApplicant.validateSsn());
+        assertEquals(1, ssnValidator.validateSsn("1234567890"));
     }
 
     @Test
     public void ssnAreaNumberIs000() {
-        jobApplicant.setSsn("000223333");
-        assertEquals(2, jobApplicant.validateSsn());
+        assertEquals(2, ssnValidator.validateSsn("000223333"));
     }
 
     @Test
     public void ssnAreaNumberIs666() {
-        jobApplicant.setSsn("666223333");
-        assertEquals(2, jobApplicant.validateSsn());
+        assertEquals(2, ssnValidator.validateSsn("666223333"));
     }
 
     @Test
     public void ssnAreaNumberStartsWith9() {
-        jobApplicant.setSsn("900223333");
-        assertEquals(2, jobApplicant.validateSsn());
+        assertEquals(2, ssnValidator.validateSsn("900223333"));
     }
 
     @Test
     public void ssnSerialNumberIs0000() {
-        jobApplicant.setSsn("111220000");
-        assertEquals(3, jobApplicant.validateSsn());
+        assertEquals(3, ssnValidator.validateSsn("111220000"));
     }
 
     @Test
     public void itRejectsSsn078051120() {
-        jobApplicant.setSsn("078051120");
-        assertEquals(4, jobApplicant.validateSsn());
+        assertEquals(4, ssnValidator.validateSsn("078051120"));
     }
 
     @Test
     public void itRejectsSsn219099999() {
-        jobApplicant.setSsn("219099999");
-        assertEquals(4, jobApplicant.validateSsn());
+        assertEquals(4, ssnValidator.validateSsn("219099999"));
     }
 }
