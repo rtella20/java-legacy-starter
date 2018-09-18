@@ -11,6 +11,18 @@ public class Name {
         this.lastName = last == null ? "" : last;
     }
 
+    public Name(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido) {
+        this.firstName = primerNombre == null ? "" : primerNombre;
+        this.middleName = segundoNombre == null ? "" : segundoNombre;
+        if ( primerApellido != null ) {
+            StringBuilder sb = new StringBuilder(primerApellido);
+            sb.append(segundoApellido == null ? null : " " + segundoApellido);
+            this.lastName = sb.toString();
+        } else {
+            this.lastName = "";
+        }
+    }
+
     public int validateName() {
         if ( firstName.length() > 0 && lastName.length() > 0 ) {
             return 0;

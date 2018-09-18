@@ -49,31 +49,31 @@ public class NameTest {
     @Test
     public void completeSpanishNameProvided() {
         Name name = new Name("PrimerNombre", "SegundoNombre", "PrimerApellido", "SegundoApellido");
-        assertEquals(0, jobApplicant.validateName());
+        assertEquals(0, name.validateName());
     }
 
     @Test
     public void spanishNameWithOneFirstNameProvided() {
         Name name = new Name("PrimerNombre", null, "PrimerApellido", "SegundoApellido");
-        assertEquals(0, jobApplicant.validateName());
+        assertEquals(0, name.validateName());
     }
 
     @Test
     public void spanishNameWithOneLastNameProvided() {
         Name name = new Name("PrimerNombre", null, "PrimerApellido", null);
-        assertEquals(0, jobApplicant.validateName());
+        assertEquals(0, name.validateName());
     }
 
     @Test
     public void spanishNameWithNoFirstNameProvided() {
         Name name = new Name(null, null, "PrimerApellido", null);
-        assertEquals(6, jobApplicant.validateName());
+        assertEquals(6, name.validateName());
     }
 
     @Test
     public void spanishNameWithNoLastNameProvided() {
         Name name = new Name("PrimerNombre", "SegundoNombre", null, null);
-        assertEquals(6, jobApplicant.validateName());
+        assertEquals(6, name.validateName());
     }
 
     @Test
