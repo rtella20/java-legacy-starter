@@ -1,5 +1,8 @@
 package com.neopragma.legacy.entity;
 
+import static com.neopragma.legacy.utils.ErrorCodes.INVALID_NAME;
+import static com.neopragma.legacy.utils.ErrorCodes.SUCCESS;
+
 public class Name {
     private String firstName;
     private String middleName;
@@ -25,9 +28,9 @@ public class Name {
 
     public int validateName() {
         if ( firstName.length() > 0 && lastName.length() > 0 ) {
-            return 0;
+            return SUCCESS.value;
         } else {
-            return 6;
+            return INVALID_NAME.value;
         }
     }
 
