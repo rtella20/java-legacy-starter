@@ -14,9 +14,9 @@ import java.util.Scanner;
  * @version 1.0.0
  */
 public class Main {
+    public static JobApplicantDao jobApplicantDao;
+
     public static void main(String[] args) {
-        JobApplicant jobApplicant = new JobApplicant();
-        JobApplicantDao jobApplicantDao = new JobApplicantDaoImpl();
         boolean done = false;
         Scanner scanner = new Scanner(System.in);
         String firstName = "";
@@ -24,6 +24,7 @@ public class Main {
         String lastName = "";
         String ssn = "";
         String zipCode = "";
+        jobApplicantDao = new JobApplicantDaoImpl();
         while (!done) {
             System.out.println("Please enter info about a job candidate or 'quit' to quit");
             System.out.println("First name?");
@@ -42,10 +43,15 @@ public class Main {
             ssn = scanner.nextLine();
             System.out.println("Zip Code?");
             zipCode = scanner.nextLine();
-            jobApplicant.setName(firstName, middleName, lastName);
-            jobApplicant.setSsn(ssn);
-            jobApplicant.setAddress(zipCode);
-            jobApplicantDao.save(jobApplicant);
+            saveJobApplicant(firstName, middleName, lastName, ssn, zipCode);
         }
+    }
+
+    private static void saveJobApplicant(String firstName, String middleName, String lastName, String ssn, String zipCode) {
+        JobApplicant jobApplicant = new JobApplicant();
+        jobApplicant.setName(firstName, middleName, lastName);
+        jobApplicant.setSsn(ssn);
+        jobApplicant.setAddress(zipCode);
+        jobApplicantDao.save(jobApplicant);
     }
 }
