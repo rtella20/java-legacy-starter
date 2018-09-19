@@ -14,6 +14,8 @@ public class JobApplicantDaoImpl implements JobApplicantDao {
     @Override
     public void save(JobApplicant jobApplicant) {
         //TODO save information to a database
-        System.out.println("Saving to database: " + jobApplicant.formatLastNameFirst());
+        System.out.println("Saving to database: " + jobApplicant.formatLastNameFirst()
+                + ", location: " + jobApplicant.getCity()
+                + ", " + jobApplicant.getState());
     }
 }

@@ -17,7 +17,8 @@ import static com.neopragma.legacy.utils.ErrorMessages.*;
 
 /**
  * Utility service to look up city and state based on a zip code
- * @throws CityStateLookupException when performing remote call for city and state lookup, wraps IOException and URISyntaxException
+ * @throws CityStateLookupException when performing remote call for city and state lookup,
+ * wraps IOException and URISyntaxException
  *
  * @author neopragma
  * @version 1.0.0
