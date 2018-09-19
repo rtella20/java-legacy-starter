@@ -1,4 +1,7 @@
 package com.neopragma.legacy.entity;
+
+import com.neopragma.legacy.utils.CityStateLookup;
+
 /**
  * Represents an address for the job applicant
  *
@@ -9,13 +12,19 @@ public class Address {
 
     private String zipCode;
     private CityState cityState;
+    private CityStateLookup cityStateLoopkup;
 
-    public Address(String zipCode, CityState cityState) {
+    public Address(String zipCode) {
         this.zipCode = zipCode;
-        this.cityState = cityState;
+        setCityState(zipCode);
     }
 
-    public void setZipCode(String zipCode) {
+    private void setCityState(String zipCode){
+        cityStateLoopkup = new CityStateLookup();
+        this.cityState = cityStateLoopkup.findCityStateBasedOnZipCode(zipCode);
+    }
+
+    private void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 

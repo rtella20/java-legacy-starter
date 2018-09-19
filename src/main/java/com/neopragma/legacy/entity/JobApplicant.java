@@ -6,7 +6,6 @@ import com.neopragma.legacy.utils.SsnUtilities;
 
 /**
  * This class represents a job applicant entity.
- * This version currently handles a number of responsibilities.
  *
  * @author neopragma
  * @version 1.0.0
@@ -17,11 +16,6 @@ public class JobApplicant {
 	private String ssn;
 	private Address address;
 	private JobApplicantDao jobApplicantDao;
-	private CityStateLookup cityStateLoopkup;
-
-	public JobApplicant(){
-		cityStateLoopkup = new CityStateLookup();
-	}
 
 	public void setName(String firstName, String middleName, String lastName) {
 		this.name = new Name(firstName, middleName, lastName);
@@ -43,7 +37,12 @@ public class JobApplicant {
 	public String getState() {
 		return address.getState();
 	}
-	
+
+
+	/** TODO: could this be dropped in favor of JobApplicant persistence layer?
+	 *  There is already a save operation exist in the persistence layer.
+	 *  Keeping this for now because of the existing public API
+	 */
 	public void add(String firstName,
 			       String middleName,
 			       String lastName,
@@ -56,6 +55,6 @@ public class JobApplicant {
 	}
 
 	public void setAddress(String zipCode) {
-		address = new Address(zipCode, cityStateLoopkup.findCityStateBasedOnZipCode(zipCode));
+		this.address = new Address(zipCode);
 	}
 }
