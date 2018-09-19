@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /**
  * This class provides entry and exit to the application.
- * Accepts user input and pretends to save a job application to database.
+ * Accepts user input and pretends to save a job applicant to database.
  *
  * @author neopragma
  * @version 1.0.0
