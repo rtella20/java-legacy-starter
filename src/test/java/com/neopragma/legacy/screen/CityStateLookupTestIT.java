@@ -1,4 +1,4 @@
-package com.neopragma.legacy.integration;
+package com.neopragma.legacy.screen;
 
 import com.neopragma.legacy.entity.Address;
 import com.neopragma.legacy.entity.CityState;
@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
  * @author neopragma
  * @version 1.0.0
  */
-public class CityStateLookupTest {
+public class CityStateLookupTestIT {
     private CityStateLookup cityStateLookup;
 
     @Before
