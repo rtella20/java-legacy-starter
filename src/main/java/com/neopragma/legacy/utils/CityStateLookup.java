@@ -13,60 +13,79 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
+import static com.neopragma.legacy.utils.ErrorMessages.*;
 
 /**
  * Utility service to look up city and state based on a zip code
+ * @throws CityStateLookupException when performing remote call for city and state lookup, wraps IOException and URISyntaxException
  *
  * @author neopragma
  * @version 1.0.0
  */
 public class CityStateLookup {
-    public CityState findCityStateBasedOnZipCode(String zipCode) throws URISyntaxException, IOException {
+
+    public CityState findCityStateBasedOnZipCode(String zipCode) throws CityStateLookupException{
         CityState cityState;
-        URI uri = getCityStateSearchUri(zipCode);
-        HttpGet request = new HttpGet(uri);
-        CloseableHttpClient httpclient = HttpClients.createDefault();
-        CloseableHttpResponse response = httpclient.execute(request);
+        CloseableHttpResponse response = null;
         try {
-            HttpEntity entity = response.getEntity();
-            cityState = extractCityStateFromHttpEntity(response, entity);
+            URI uri = getCityStateSearchUri(zipCode);
+            HttpGet request = new HttpGet(uri);
+            CloseableHttpClient httpclient = HttpClients.createDefault();
+            response = httpclient.execute(request);
+            cityState = extractCityStateFromHttpResponse(response);
+        } catch (IOException ioException) {
+            throw new CityStateLookupException(FAILED_TO_MAKE_REMOTE_CALL.value, ioException);
         } finally {
-            response.close();
-        }
-        return cityState;
-    }
-
-    private CityState extractCityStateFromHttpEntity(CloseableHttpResponse response, HttpEntity entity) throws IOException {
-        CityState cityState = new CityState("", "");
-        if (entity != null) {
-            BufferedReader rd = new BufferedReader(
-                    new InputStreamReader(response.getEntity().getContent()));
-            StringBuffer result = new StringBuffer();
-            String line = "";
-            while ((line = rd.readLine()) != null) {
-                result.append(line);
+            try {
+                if (response != null) response.close();
+            } catch (IOException ioException) {
+                throw new CityStateLookupException(UNABLE_TO_CLOSE_HTTP_RESPONSE.value, ioException);
             }
-            int metaOffset = result.indexOf("<meta ");
-            int contentOffset = result.indexOf(" content=\"Zip Code ", metaOffset);
-            contentOffset += 19;
-            contentOffset = result.indexOf(" - ", contentOffset);
-            contentOffset += 3;
-            int stateOffset = result.indexOf(" ", contentOffset);
-            cityState.setCity(result.substring(contentOffset, stateOffset));
-            stateOffset += 1;
-            cityState.setState(result.substring(stateOffset, stateOffset+2));
         }
         return cityState;
     }
 
-    private URI getCityStateSearchUri(String zipCode) throws URISyntaxException {
-        return new URIBuilder()
-                .setScheme("http")
-                .setHost("www.zip-codes.com")
-                .setPath("/search.asp")
-                .setParameter("fld-zip", zipCode)
-                .setParameter("selectTab", "0")
-                .setParameter("srch-type", "city")
-                .build();
+    private CityState extractCityStateFromHttpResponse(CloseableHttpResponse response) {
+        CityState cityState = new CityState("", "");
+        HttpEntity entity = response.getEntity();
+        try {
+            if (entity != null) {
+                BufferedReader rd = new BufferedReader(
+                        new InputStreamReader(response.getEntity().getContent()));
+                StringBuffer result = new StringBuffer();
+                String line = "";
+                while ((line = rd.readLine()) != null) {
+                    result.append(line);
+                }
+                int metaOffset = result.indexOf("<meta ");
+                int contentOffset = result.indexOf(" content=\"Zip Code ", metaOffset);
+                contentOffset += 19;
+                contentOffset = result.indexOf(" - ", contentOffset);
+                contentOffset += 3;
+                int stateOffset = result.indexOf(" ", contentOffset);
+                cityState.setCity(result.substring(contentOffset, stateOffset));
+                stateOffset += 1;
+                cityState.setState(result.substring(stateOffset, stateOffset+2));
+            }
+        } catch (IOException ioException){
+            throw new CityStateLookupException(FAILED_TO_MAKE_REMOTE_CALL.value, ioException);
+        }
+
+        return cityState;
+    }
+
+    private URI getCityStateSearchUri(String zipCode) {
+        try {
+            return new URIBuilder()
+                    .setScheme("http")
+                    .setHost("www.zip-codes.com")
+                    .setPath("/search.asp")
+                    .setParameter("fld-zip", zipCode)
+                    .setParameter("selectTab", "0")
+                    .setParameter("srch-type", "city")
+                    .build();
+        } catch (URISyntaxException uriSyntaxException){
+            throw new CityStateLookupException(FAILED_TO_BUILD_URI.value, uriSyntaxException);
+        }
     }
 }

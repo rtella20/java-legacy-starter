@@ -1,8 +1,5 @@
 package com.neopragma.legacy.entity;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-
 import com.neopragma.legacy.dao.JobApplicantDao;
 import com.neopragma.legacy.utils.CityStateLookup;
 import com.neopragma.legacy.utils.SsnUtilities;
@@ -51,14 +48,14 @@ public class JobApplicant {
 			       String middleName,
 			       String lastName,
 			       String ssn,
-			       String zipCode) throws URISyntaxException, IOException {
+			       String zipCode) {
 		setName(firstName, middleName, lastName);
 		setSsn(ssn);
 		setAddress(zipCode);
 		jobApplicantDao.save(this);
 	}
 
-	public void setAddress(String zipCode) throws IOException, URISyntaxException {
+	public void setAddress(String zipCode) {
 		address = new Address(zipCode, cityStateLoopkup.findCityStateBasedOnZipCode(zipCode));
 	}
 }
