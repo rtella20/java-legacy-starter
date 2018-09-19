@@ -28,3 +28,4 @@ Smell 12: Integration tests are bundled with unit tests. The city state look up 
 
 Smell 13: Checked exceptions in CityStateLookup are tightly coupled requiring the callers to handle exception. This is a maintenance issue that changes to the lookup service interface such as making a db call may require a new set of exceptions handling. Introduce an unchecked exception wrapper and document.
 
+Smell 14: Incompatible Maven plugin for JDK 9 and 10 versions. The current cobertura-maven-plugin fails to build using Java versions greater than JDK8. See https://github.com/mojohaus/cobertura-maven-plugin/issues/30 Disabling the Cobertura for now to make command line build work. To do: Add a technical debt items to implement a code coverage tool.
